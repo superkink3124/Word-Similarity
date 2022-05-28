@@ -560,7 +560,6 @@ bằng_chứng bằng_cớ
 bằng_chứng bằng_cứ
 bằng_chứng chứng_cớ
 bằng_chứng chứng_cứ
-bằng_chứng 
 bằng_cớ bằng_cứ
 bằng_cớ chứng_cớ
 bằng_cớ chứng_cứ
