@@ -1,8 +1,9 @@
-from gensim.models import KeyedVectors
-import pandas as pd
-from task.word_similarity import WordSimilarity
-import seaborn as sns
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+from gensim.models import KeyedVectors
+
+from task.word_similarity import WordSimilarity
 
 
 def evaluate_similarity():
@@ -35,6 +36,7 @@ def k_nearest_neighbor(query_word, k, sim_function):
         candidates.append((sim_function(word2vec[word], word2vec[query_word]), word))
     candidates.sort(reverse=True)
     candidates = [candidate[1] for candidate in candidates[:k]]
+    candidates = "\n".join(candidates)
     return candidates
 
 
@@ -50,8 +52,15 @@ def show_mean_plot():
 if __name__ == '__main__':
     word2vec = KeyedVectors.load_word2vec_format('word2vec/W2V_150.txt')
     vocab = word2vec.index_to_key
-    show_mean_plot()
     evaluate_similarity()
-    print(k_nearest_neighbor("khử_trùng", 10, WordSimilarity.cosine))
-    print(k_nearest_neighbor("khử_trùng", 10, WordSimilarity.pearson))
-    print(k_nearest_neighbor("khử_trùng", 10, WordSimilarity.spearman_rank))
+    word = "ngăn_nắp"
+    print("Cosine")
+    print(k_nearest_neighbor(word, 10, WordSimilarity.cosine))
+    print("\n")
+    print("Pearson")
+    print(k_nearest_neighbor(word, 10, WordSimilarity.pearson))
+    print("\n")
+    print("Spearman_rank")
+    print(k_nearest_neighbor(word, 10, WordSimilarity.spearman_rank))
+    print("\n")
+
